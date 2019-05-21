@@ -1,4 +1,4 @@
-import React, {Component} from 'react';
+import React, { Component } from 'react';
 import {
   AppRegistry,
   BackHandler,
@@ -14,25 +14,10 @@ import AnylineOCR from 'anyline-ocr-react-native-module';
 import Result from './Result';
 import Overview from './Overview';
 
-import BarcodeConfig from '../config/BarcodeConfig';
-import BarcodePDF417Config from '../config/Barcode_PDF417Config';
-import DocumentConfig from '../config/DocumentConfig';
-import MRZConfig from '../config/MRZConfig';
-import AutoEnergyConfig from '../config/AutoEnergyConfig';
-import AnalogEnergyConfig from '../config/AnalogMeterConfig';
-import DigitalEnergyConfig from '../config/DigitalMeterConfig';
-import DialEnergyConfig from '../config/DialMeterConfig';
-import IBANConfig from '../config/IbanConfig';
-import VoucherConfig from '../config/VoucherConfig';
-import DrivingLicenseConfig from '../config/DrivingLicenseConfig';
-import LicensePlateConfig from '../config/LicensePlateConfig';
-import SerialNumberConfig from '../config/SerialNumber';
-import VinConfig from '../config/VINConfig';
-import USNRConfig from "../config/USNRConfig";
-import ShipConConfig from "../config/ContainerShipConfig";
-import CattleTagConfig from "../config/CattleTagConfig";
-import GermanIDFrontConfig from '../config/GermanIDFrontConfig';
-import VerticalContainerConfig from '../config/VerticalContainerConfig';
+import {
+  BarcodeConfig, BarcodePDF417Config, DocumentConfig, MRZConfig, AutoEnergyConfig, AnalogEnergyConfig, DigitalEnergyConfig, DialEnergyConfig, IBANConfig,
+  VoucherConfig, DrivingLicenseConfig, LicensePlateConfig, SerialNumberConfig, VinConfig, USNRConfig, ShipConConfig, CattleTagConfig, GermanIDFrontConfig, VerticalContainerConfig
+} from '../../../config';
 
 // Disable Warnings 
 console.disableYellowBox = true;
@@ -50,7 +35,7 @@ class Anyline extends Component {
   };
   componentDidMount = async () => {
     const SDKVersion = await AnylineOCR.getSDKVersion();
-    this.setState({SDKVersion: SDKVersion});
+    this.setState({ SDKVersion: SDKVersion });
   }
 
   componentWillUpdate() {
@@ -59,7 +44,7 @@ class Anyline extends Component {
 
   openAnyline = async (type) => {
 
-    this.setState({buttonsDisabled: true});
+    this.setState({ buttonsDisabled: true });
     let config;
 
     this.setState({
@@ -140,7 +125,7 @@ class Anyline extends Component {
       const result = await AnylineOCR.setupPromise(JSON.stringify(config), 'scan');
 
       console.log(result);
-      this.setState({buttonsDisabled: false});
+      this.setState({ buttonsDisabled: false });
 
       const data = JSON.parse(result);
       LayoutAnimation.easeInEaseOut();
@@ -161,7 +146,7 @@ class Anyline extends Component {
         console.log(error);
       }
     }
-    this.setState({buttonsDisabled: false});
+    this.setState({ buttonsDisabled: false });
   };
 
   requestCameraPermission = async (type) => {
@@ -250,8 +235,8 @@ class Anyline extends Component {
             emptyResult={this.emptyResult}
           />
         ) : <Overview key="OverView" openAnyline={this.openAnyline}
-                      checkCameraPermissionAndOpen={this.checkCameraPermissionAndOpen}
-                      disabled={buttonsDisabled}/>}
+          checkCameraPermissionAndOpen={this.checkCameraPermissionAndOpen}
+          disabled={buttonsDisabled} />}
         <Text style={styles.versions}>SDK Version: {SDKVersion}</Text>
         <Text style={styles.versions}>RN-Build Number: 1</Text>
       </ScrollView>
