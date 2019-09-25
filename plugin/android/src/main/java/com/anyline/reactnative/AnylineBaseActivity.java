@@ -12,11 +12,16 @@ import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.PointF;
+import android.graphics.Typeface;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.Gravity;
+import android.view.View;
 import android.view.WindowManager;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+
+import com.facebook.react.views.text.ReactFontManager;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -146,9 +151,12 @@ public abstract class AnylineBaseActivity extends Activity
         try {
             JSONObject jsonObject = new JSONObject(configJson);
             JSONObject labelObject = jsonObject.getJSONObject("label");
+            labelView.setGravity(Gravity.CENTER);
             labelView.setText(labelObject.getString("text"));
             labelView.setTextColor(Color.parseColor("#" + labelObject.getString("color")));
             labelView.setTextSize(Float.parseFloat(labelObject.getString("size")));
+            labelView.setVisibility(View.GONE);
+            labelView.setTypeface(ReactFontManager.getInstance().getTypeface(labelObject.getString("family"), Typeface.NORMAL, context.getAssets()));
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -180,7 +188,7 @@ public abstract class AnylineBaseActivity extends Activity
 
     protected RelativeLayout.LayoutParams getWrapContentLayoutParams (){
         RelativeLayout.LayoutParams lp = new RelativeLayout.LayoutParams(
-                RelativeLayout.LayoutParams.WRAP_CONTENT,
+                RelativeLayout.LayoutParams.MATCH_PARENT,
                 RelativeLayout.LayoutParams.WRAP_CONTENT);
         lp.addRule(RelativeLayout.ALIGN_PARENT_TOP);
         return lp;

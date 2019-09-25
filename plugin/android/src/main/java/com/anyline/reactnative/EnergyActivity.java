@@ -232,7 +232,7 @@ public class EnergyActivity extends AnylineBaseActivity {
 
 
                         RelativeLayout.LayoutParams lp = (RelativeLayout.LayoutParams) labelView.getLayoutParams();
-                        lp.setMargins(rect.left + Integer.parseInt(offsetJson.getString("x")), rect.top + Integer.parseInt(offsetJson.getString("y")), 0, 0);
+                        lp.setMargins(Integer.parseInt(offsetJson.getString("x")), Integer.parseInt(offsetJson.getString("y")), 0, 0);
                         labelView.setLayoutParams(lp);
 
                         labelView.setVisibility(View.VISIBLE);
