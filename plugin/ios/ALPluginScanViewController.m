@@ -20,6 +20,7 @@
 
 @property (nonatomic,strong) UIButton *doneButton;
 @property (nonatomic,strong) UILabel *scannedLabel;
+@property (nonatomic, strong) UILabel *label;
 
 @property (nonatomic, strong) UISegmentedControl *segment;
 
@@ -114,6 +115,18 @@
     self.doneButton = [ALPluginHelper createButtonForViewController:self config:self.uiConfig];
     
     self.scannedLabel = [ALPluginHelper createLabelForView:self.view];
+    
+    // Add Label
+    self.label = [[UILabel alloc] init];
+    self.label.hidden = YES;
+
+    [self.label setFont:[UIFont fontWithName:self.uiConfig.labelFont size:self.uiConfig.labelSize]];
+    [self.label setNumberOfLines:0];
+    [self.label setText:self.uiConfig.labelText];
+    [self.label setTextAlignment:NSTextAlignmentCenter];
+    [self.label setTextColor:self.uiConfig.labelColor];
+    [self.label sizeToFit];
+    [self.view addSubview:self.label];
 }
 
 - (void)viewDidAppear:(BOOL)animated {
@@ -137,6 +150,9 @@
         self.segment.hidden = NO;
     }
     
+    //Label
+    self.label.center = CGPointMake(self.uiConfig.labelXPositionOffset, self.uiConfig.labelYPositionOffset);
+    self.label.hidden = NO;
 }
 
 - (void)viewDidDisappear:(BOOL)animated {

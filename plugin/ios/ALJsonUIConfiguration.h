@@ -53,6 +53,7 @@ typedef NS_ENUM(NSUInteger, ALButtonType) {
 @property (nonatomic,strong) NSString *labelText;
 @property (nonatomic,assign) CGFloat labelSize;
 @property (nonatomic,strong) UIColor *labelColor;
+@property (nonatomic,strong) NSString *labelFont;
 @property (nonatomic,assign) CGFloat labelXPositionOffset;
 @property (nonatomic,assign) CGFloat labelYPositionOffset;
     

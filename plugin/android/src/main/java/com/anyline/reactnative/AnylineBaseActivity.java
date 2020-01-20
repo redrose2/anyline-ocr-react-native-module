@@ -14,6 +14,7 @@ import android.graphics.Color;
 import android.graphics.PointF;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.Gravity;
 import android.view.WindowManager;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
@@ -147,6 +148,7 @@ public abstract class AnylineBaseActivity extends Activity
         try {
             JSONObject jsonObject = new JSONObject(configJson);
             JSONObject labelObject = jsonObject.getJSONObject("label");
+            labelView.setGravity(Gravity.CENTER);
             labelView.setText(labelObject.getString("text"));
             labelView.setTextColor(Color.parseColor("#" + labelObject.getString("color")));
             labelView.setTextSize(Float.parseFloat(labelObject.getString("size")));
@@ -181,7 +183,7 @@ public abstract class AnylineBaseActivity extends Activity
 
     protected RelativeLayout.LayoutParams getWrapContentLayoutParams (){
         RelativeLayout.LayoutParams lp = new RelativeLayout.LayoutParams(
-                RelativeLayout.LayoutParams.WRAP_CONTENT,
+                RelativeLayout.LayoutParams.MATCH_PARENT,
                 RelativeLayout.LayoutParams.WRAP_CONTENT);
         lp.addRule(RelativeLayout.ALIGN_PARENT_TOP);
         return lp;

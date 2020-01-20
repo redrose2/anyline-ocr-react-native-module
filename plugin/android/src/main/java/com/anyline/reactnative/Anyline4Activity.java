@@ -534,6 +534,19 @@ public class Anyline4Activity extends AnylineBaseActivity {
 
             relativeLayout.addView(radioGroup, lp);
         }
+
+        //add custom Label
+        if (json.has("label")) {
+            try {
+                final JSONObject offsetJson = new JSONObject(configJson).getJSONObject("label").getJSONObject("offset");
+                final RelativeLayout.LayoutParams lp = getWrapContentLayoutParams();
+                lp.setMargins(offsetJson.getInt("x"), offsetJson.getInt("y"), 0, 0);
+                relativeLayout.addView(getLabelView(getApplicationContext()), lp);
+            } catch (JSONException e) {
+                finishWithError(e.toString());
+            }
+        }
+
         setContentView(relativeLayout, matchParentParams);
 
     }

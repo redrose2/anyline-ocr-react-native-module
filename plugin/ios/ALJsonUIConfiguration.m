@@ -33,6 +33,7 @@ NSString * const LABEL = @"label";
 NSString * const LABEL_TEXT = @"text";
 NSString * const LABEL_COLOR = @"color";
 NSString * const LABEL_SIZE = @"size";
+NSString * const LABEL_FONT = @"family";
 
 NSString * const LABEL_OFFSET = @"labelOffset";
 NSString * const LABEL_OFFSET_X = @"offset.x";
@@ -131,6 +132,9 @@ NSString * const LABEL_OFFSET_Y = @"offset.y";
             
             if([labDict valueForKey:LABEL_COLOR])
             _labelColor = [ALJsonUIConfiguration colorFromHexString:[labDict valueForKey:LABEL_COLOR]];
+            
+            if([labDict valueForKey:LABEL_FONT])
+            _labelFont = [labDict valueForKey:LABEL_FONT];
             
             if([labDict valueForKeyPath:LABEL_OFFSET_X])
             _labelXPositionOffset = [[labDict valueForKeyPath:LABEL_OFFSET_X] floatValue];
